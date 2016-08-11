@@ -3,6 +3,7 @@ package com.mvp.demo.model.impl;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -31,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
+import rx.Observer;
+import rx.functions.Func1;
 
 /**
  * 创建人：
@@ -114,8 +117,7 @@ public class SharesImpl implements IShares {
         } else if (unit.equals("亿手")) {
             u = 8;
         }
-
-
+                
         /**
          * 解析数据
          */

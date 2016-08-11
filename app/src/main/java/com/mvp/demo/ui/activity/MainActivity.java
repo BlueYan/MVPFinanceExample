@@ -204,7 +204,7 @@ public class MainActivity extends BaseActivity implements ISharesView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSharePresenter.onDestory();
+        mSharePresenter.onDestroy();
     }
 
     @Override

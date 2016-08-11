@@ -21,181 +21,176 @@ public class SPUtils {
      * SP的name值
      * <p>可通过修改PREFERENCE_NAME变量修改SP的name值</p>
      */
-    public static String PREFERENCE_NAME = "ANCROID_UTIL_CODE";
+    public static String PREFERENCE_NAME = "SP";
+
+    private static SharedPreferences mSP;
+
+    private static SharedPreferences.Editor mEditor;
+
+
+    public static void init(Context context) {
+        mSP = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        mEditor = mSP.edit();
+    }
 
     /**
      * SP中写入String类型value
      *
-     * @param context 上下文
      * @param key     键
      * @param value   值
      * @return true: 写入成功<br>false: 写入失败
      */
-    public static boolean putString(Context context, String key, String value) {
-        return getSP(context).edit().putString(key, value).commit();
+    public static boolean putString(String key, String value) {
+        return mEditor.putString(key, value).commit();
     }
 
     /**
      * SP中读取String
      *
-     * @param context 上下文
      * @param key     键
      * @return 存在返回对应值，不存在返回默认值null
      */
-    public static String getString(Context context, String key) {
-        return getString(context, key, null);
+    public static String getString(String key) {
+        return getString(key, null);
     }
 
     /**
      * SP中读取String
      *
-     * @param context      上下文
      * @param key          键
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值defaultValue
      */
-    public static String getString(Context context, String key, String defaultValue) {
-        return getSP(context).getString(key, defaultValue);
+    public static String getString(String key, String defaultValue) {
+        return mSP.getString(key, defaultValue);
     }
 
     /**
      * SP中写入int类型value
      *
-     * @param context 上下文
      * @param key     键
      * @param value   值
      * @return true: 写入成功<br>false: 写入失败
      */
-    public static boolean putInt(Context context, String key, int value) {
-        return getSP(context).edit().putInt(key, value).commit();
+    public static boolean putInt(String key, int value) {
+        return mEditor.putInt(key, value).commit();
     }
 
     /**
      * SP中读取int
      *
-     * @param context 上下文
      * @param key     键
      * @return 存在返回对应值，不存在返回默认值-1
      */
-    public static int getInt(Context context, String key) {
-        return getInt(context, key, -1);
+    public static int getInt(String key) {
+        return getInt(key, -1);
     }
 
     /**
      * SP中读取int
      *
-     * @param context      上下文
      * @param key          键
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值defaultValue
      */
-    public static int getInt(Context context, String key, int defaultValue) {
-        return getSP(context).getInt(key, defaultValue);
+    public static int getInt(String key, int defaultValue) {
+        return mSP.getInt(key, defaultValue);
     }
 
     /**
      * SP中写入long类型value
      *
-     * @param context 上下文
      * @param key     键
      * @param value   值
      * @return true: 写入成功<br>false: 写入失败
      */
-    public static boolean putLong(Context context, String key, long value) {
-        return getSP(context).edit().putLong(key, value).commit();
+    public static boolean putLong(String key, long value) {
+        return mEditor.putLong(key, value).commit();
     }
 
     /**
      * SP中读取long
      *
-     * @param context 上下文
      * @param key     键
      * @return 存在返回对应值，不存在返回默认值-1
      */
-    public static long getLong(Context context, String key) {
-        return getLong(context, key, -1);
+    public static long getLong(String key) {
+        return getLong(key, -1);
     }
 
     /**
      * SP中读取long
      *
-     * @param context      上下文
      * @param key          键
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值defaultValue
      */
-    public static long getLong(Context context, String key, long defaultValue) {
-        return getSP(context).getLong(key, defaultValue);
+    public static long getLong(String key, long defaultValue) {
+        return mSP.getLong(key, defaultValue);
     }
 
     /**
      * SP中写入float类型value
      *
-     * @param context 上下文
      * @param key     键
      * @param value   值
      * @return true: 写入成功<br>false: 写入失败
      */
-    public static boolean putFloat(Context context, String key, float value) {
-        return getSP(context).edit().putFloat(key, value).commit();
+    public static boolean putFloat(String key, float value) {
+        return mEditor.putFloat(key, value).commit();
     }
 
     /**
      * SP中读取float
      *
-     * @param context 上下文
      * @param key     键
      * @return 存在返回对应值，不存在返回默认值-1
      */
-    public static float getFloat(Context context, String key) {
-        return getFloat(context, key, -1);
+    public static float getFloat(String key) {
+        return getFloat( key, -1);
     }
 
     /**
      * SP中读取float
      *
-     * @param context      上下文
      * @param key          键
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值defaultValue
      */
-    public static float getFloat(Context context, String key, float defaultValue) {
-        return getSP(context).getFloat(key, defaultValue);
+    public static float getFloat(String key, float defaultValue) {
+        return mSP.getFloat(key, defaultValue);
     }
 
     /**
      * SP中写入boolean类型value
      *
-     * @param context 上下文
      * @param key     键
      * @param value   值
      * @return true: 写入成功<br>false: 写入失败
      */
-    public static boolean putBoolean(Context context, String key, boolean value) {
-        return getSP(context).edit().putBoolean(key, value).commit();
+    public static boolean putBoolean(String key, boolean value) {
+        return mEditor.putBoolean(key, value).commit();
     }
 
     /**
      * SP中读取boolean
      *
-     * @param context 上下文
      * @param key     键
      * @return 存在返回对应值，不存在返回默认值false
      */
-    public static boolean getBoolean(Context context, String key) {
-        return getBoolean(context, key, false);
+    public static boolean getBoolean(String key) {
+        return getBoolean(key, false);
     }
 
     /**
      * SP中读取boolean
      *
-     * @param context      上下文
      * @param key          键
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值defaultValue
      */
-    public static boolean getBoolean(Context context, String key, boolean defaultValue) {
-        return getSP(context).getBoolean(key, defaultValue);
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        return mSP.getBoolean(key, defaultValue);
     }
 
     /**

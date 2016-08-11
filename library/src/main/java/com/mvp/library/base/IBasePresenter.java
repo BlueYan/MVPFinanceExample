@@ -11,6 +11,6 @@ public interface IBasePresenter {
 
     void onCreate();  //初始化数据
 
-    void onDestory(); //释放资源
+    void onDestroy(); //释放资源
 
 }

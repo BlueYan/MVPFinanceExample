@@ -11,6 +11,7 @@ import com.mvp.demo.model.IShares;
 import com.mvp.demo.model.bean.SharesEntity;
 import com.mvp.demo.model.impl.SharesImpl;
 import com.mvp.demo.ui.iview.ISharesView;
+import com.mvp.library.base.BasePresenterImpl;
 import com.mvp.library.base.IBasePresenter;
 import com.mvp.library.utils.LogUtils;
 
@@ -32,7 +33,7 @@ import rx.schedulers.Schedulers;
  * 修改人：
  * 修改时间：
  */
-public class SharesPresenter implements IBasePresenter{
+public class SharesPresenter extends BasePresenterImpl{
 
     private static final String TAG = SharesPresenter.class.getSimpleName();
 
@@ -45,9 +46,12 @@ public class SharesPresenter implements IBasePresenter{
         mShares = new SharesImpl();
     }
 
+
+
     //初始化数据
     @Override
     public void onCreate() {
+        super.onCreate();
         mSharesView.showLoading();
        /* mShares.getSharesInfo()
                 .subscribeOn(Schedulers.io())
@@ -120,7 +124,7 @@ public class SharesPresenter implements IBasePresenter{
 
     //释放资源
     @Override
-    public void onDestory() {
-
+    public void onDestroy() {
+        super.onDestroy(); //一定要调用父类的onDestroy();
     }
 }
