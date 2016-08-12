@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ScrollView;
 
 
 public class KeyboardUtils {
@@ -133,5 +134,16 @@ public class KeyboardUtils {
         InputMethodManager inputManager = (InputMethodManager) context
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+    /**
+     * 定位到某一个控件
+     * @param mSrcollView
+     * @param v
+     */
+    public static void scrollTo(ScrollView mSrcollView, View v) {
+        int[] viewPostion = { 0, 0 };
+        v.getLocationInWindow(viewPostion);
+        mSrcollView.smoothScrollBy(viewPostion[0], viewPostion[1] - 300);
     }
 }

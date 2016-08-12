@@ -3,6 +3,7 @@ package com.mvp.demo.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,26 @@ public abstract class BaseFragment extends Fragment {
 
     private static final String TAG = BaseFragment.class.getSimpleName();
 
+    private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
+
     protected View mView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //读取hidden的状态
+        if ( savedInstanceState != null ) {
+            boolean isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN);
+            FragmentTransaction mFT = getFragmentManager().beginTransaction();
+            if ( isSupportHidden ) {
+                mFT.hide(this);
+            } else {
+                mFT.show(this);
+            }
+            mFT.commit();
+        }
+
+    }
 
     @Nullable
     @Override
@@ -35,6 +55,12 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract int getLayoutId();
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden()); //保存fragment隐藏的状态
+    }
 
     @Override
     public void onDestroyView() {

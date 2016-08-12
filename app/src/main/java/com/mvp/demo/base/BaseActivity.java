@@ -9,7 +9,10 @@ import butterknife.ButterKnife;
 /**
  * 创建人：
  * 创建时间： 2016/8/9 11
- * 功能概述:
+ * 功能概述: 如果在有用到fragment，要在Activity的OnCreate()方法中去判断saveInstanceState是否为空，加载根Fragment
+ *          if( saveInstanceState == null ) {
+ *              加载根Fragment
+ *          }
  * 修改人：
  * 修改时间：
  */
@@ -24,14 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        /**
-         * 应该从这里初始化数据
-         * 内存 -> SD -> 网络
-         * 由于数据是在M层进行操作，所有这里需要引用到P层对象
-         * IBasePresenter
-         */
-        //setPresenter();
-//        mPresenter.onCreate();
         initView();
         initEvent();
     }
